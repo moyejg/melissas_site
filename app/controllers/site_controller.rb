@@ -7,4 +7,9 @@ class SiteController < ApplicationController
     @piece = Piece.find_by(params[:id])
   end
 
+  def dashboard
+    @piece = Piece.new
+    @users = User.all
+  end
+
 end

@@ -1,34 +1,19 @@
-<%= form_with(model: piece, local: true) do |form| %>
-  <% if piece.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(piece.errors.count, "error") %> prohibited this piece from being saved:</h2>
+<%= form_with(model: @piece, local: true) do |form| %>
 
-      <ul>
-        <% piece.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-      </ul>
-    </div>
-  <% end %>
-
-  <div class="field">
-    <%= form.label :name %>
-    <%= form.text_field :name %>
+  <div class="form-group">
+    <%= form.text_field :name, placeholder: 'Name', class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :description %>
-    <%= form.text_area :description %>
+  <div class="form-group">
+    <%= form.text_area :description, placeholder: 'Description', class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :quantity %>
-    <%= form.number_field :quantity %>
+  <div class="form-group">
+    <%= form.number_field :quantity, placeholder: 'Quantity', class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :price %>
-    <%= form.text_field :price %>
+  <div class="form-group">
+    <%= form.text_field :price, placeholder: 'Price', class: 'form-control' %>
   </div>
 
   <div class="field">

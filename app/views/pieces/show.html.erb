@@ -20,5 +20,15 @@
   <%= @piece.price %>
 </p>
 
+<div class="row">
+  <div class="col-md-6">
+    <%= video_tag (url_for(@piece.video) if @piece.video.attached?), autoplay: :autoplay, loop: :loop, muted: :muted, controls: true, class: "modal-video" %>
+  </div>
+  <div class="col-md-6">
+    <% @piece.images.each do |image| %>
+      <%= image_tag (image) %>
+    <% end %>
+  </div>
+
 <%= link_to 'Edit', edit_piece_path(@piece) %> |
 <%= link_to 'Back', pieces_path %>
