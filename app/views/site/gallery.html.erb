@@ -1,0 +1,46 @@
+<div class="row">
+  <div class="col-lg-6 offset-lg-3">
+    <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="/assets/melissalogo.jpg" class="d-block w-100" alt="...">
+        </div>
+        <% @pieces.each do |piece| %>
+          <div class="carousel-item">  
+              <%= image_tag (piece.images.first if piece.images.attached?), class:"d-block w-100" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col-lg-10 offset-lg-1 my-auto">
+    <h1>Melissa's Gallery</h1>
+  </div>
+</div>
+
+<% @pieces.each_slice(3) do |pieces| %>
+  <div class="row">
+    <% pieces.each do |piece| %>
+      <div class="col-lg-4">
+        <a href="#" data-toggle="modal" data-target="#modal<%= piece.id %>">
+          <%= image_tag (piece.images.first if piece.images.attached?), class:"img-thumbnail mx-auto d-block img-size"%>
+        </a>
+        <p><%= piece.name %></p>
+        <p><%= piece.description %></p>
+        <%= render 'site/modal', piece: piece %>
+      </div>
+    <% end %>
+  </div>
+<% end %>
+
+<div class="row sticky-bottom">
+  <div class="col-lg-4 offset-lg-4 d-flex justify-content-center">
+    <a class="icon" href="https://www.facebook.com/donandmelissa" target="_blank"><i class="fab fa-facebook fa-2x"></i></a>
+    <a class="icon" href="https://www.instagram.com/paint_knit_quilt_grow/?hl=en" target="_blank"><i class="fab fa-instagram fa-2x"></i></a>
+    <a class="icon" href="https://twitter.com/vidamagic1" target="_blank"><i class="fab fa-twitter-square fa-2x"></i></a>
+    <a class="icon" href="https://vidamagic.tumblr.com/" target="_blank"><i class="fab fa-tumblr-square fa-2x"></i></a>
+  </div>
+</div>

@@ -1,0 +1,99 @@
+@import "~bootstrap/scss/bootstrap";
+@import '@fortawesome/fontawesome-free';
+
+.bg-black {
+  background-color: black;
+}
+
+.dropdown-toggle::after {
+  display: none;
+}
+
+.navbar-brand {
+  transform: translateX(-50%);
+  left: 50%;
+  position: absolute;
+}
+
+h1 {
+  font-family: 'Great Vibes', cursive;
+  text-align: center;
+  font-size: 90px;
+  color: black;
+}
+
+h5 {
+  font-family: 'Great Vibes', cursive;
+  text-align: center;
+  color: black;
+}
+
+p {
+  font-family: 'Great Vibes', cursive;
+  text-align: center;
+  color: black;
+  font-size: 25px;
+  word-wrap: break-word;  
+}
+
+.row {
+  padding: 10px; 
+}
+
+.img-size {
+  height: 225px;
+  width: 225px;
+}
+
+.icon {
+  color: black;
+  padding: 10px;
+}
+
+.modal-video {
+  width: 100%;
+  height: auto;
+}
+
+@media only screen 
+  and (min-device-width: 375px) 
+  and (max-device-width: 812px) 
+  and (-webkit-min-device-pixel-ratio: 3) { 
+    .navbar {
+      height: 150px;
+    }
+
+    .mobile-icon {
+      height: 125px;
+      width: 125px;
+    }
+
+    .dropdown-icon {
+      height: 50px;
+      width: 50px;
+    }
+
+    .mx-w-100 {
+      max-width: 100% !important;
+    }
+
+    .img-size {
+      width: 100% !important;
+      height: auto;
+    }
+
+    .dropdown-item {
+      font-size: 60px !important;
+    }
+
+    .fa-2x {
+      height: 75px !important;
+      width: auto !important;
+    }
+
+    p {
+      font-size: 100px;
+    }
+
+}
+
