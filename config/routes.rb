@@ -1,10 +1,20 @@
 Rails.application.routes.draw do
   devise_for :users
   resources :pieces
-  get 'site/gallery'
-  get 'site/dashboard'
 
   root "site#gallery"
+
+  get 'gallery' => 'site#gallery'
+  get 'dashboard' => 'site#dashboard'
+
+  scope '/checkout' do
+    post 'create', to: 'checkout#create', as: 'checkout_create'
+    get 'cancel', to: 'site#gallery', as: 'checkout_cancel'
+    get 'success', to: 'checkout#success', as: 'checkout_success'
+  end
+  
+
+
 
   # devise_for :users, controllers: {
   #       sessions: 'users/sessions',

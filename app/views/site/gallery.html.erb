@@ -7,7 +7,7 @@
         </div>
         <% @pieces.each do |piece| %>
           <div class="carousel-item">  
-              <%= image_tag (piece.images.first if piece.images.attached?), class:"d-block w-100" %>
+              <%= image_tag (piece.images.joins(:blob).order('active_storage_blobs.filename ASC').first if piece.images.attached?), class:"d-block w-100" %>
           </div>
         <% end %>
       </div>
@@ -26,7 +26,7 @@
     <% pieces.each do |piece| %>
       <div class="col-lg-4">
         <a href="#" data-toggle="modal" data-target="#modal<%= piece.id %>">
-          <%= image_tag (piece.images.first if piece.images.attached?), class:"img-thumbnail mx-auto d-block img-size"%>
+          <%= image_tag (piece.images.joins(:blob).order('active_storage_blobs.filename ASC').first if piece.images.attached?), class:"img-thumbnail mx-auto d-block img-size"%>
         </a>
         <p><%= piece.name %></p>
         <p><%= piece.description %></p>

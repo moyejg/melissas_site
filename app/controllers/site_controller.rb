@@ -1,4 +1,5 @@
 class SiteController < ApplicationController
+  
   def gallery
     @pieces = Piece.all
   end

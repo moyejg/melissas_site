@@ -13,7 +13,7 @@
             <div class="carousel-item active">
                 <%= video_tag (url_for(piece.video) if piece.video.attached?), autoplay: :autoplay, loop: :loop, muted: :muted, controls: true, class: "modal-video" %>
             </div>
-            <% piece.images.each do |image| %>
+            <% piece.images.joins(:blob).order('active_storage_blobs.filename ASC').each do |image| %>
               <div class="carousel-item">  
                   <%= image_tag (image if piece.images.attached?), class:"d-block w-100" %>
               </div>
@@ -28,6 +28,9 @@
             <span class="sr-only">Next</span>
           </a>
         </div>   
+      </div>
+      <div class="modal-footer">
+        <%= button_to 'Purchase', checkout_create_path, method: :post, params: {id: piece.id}, remote: true, class:"btn btn-dark" %>
       </div>
     </div>
   </div>
