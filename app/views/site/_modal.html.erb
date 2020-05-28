@@ -30,7 +30,11 @@
         </div>   
       </div>
       <div class="modal-footer">
-        <%= button_to 'Purchase', checkout_create_path, method: :post, params: {id: piece.id}, remote: true, class:"btn btn-dark" %>
+        <% if piece.quantity == 1 %>
+          <%= button_to 'Purchase', checkout_create_path, method: :post, params: {id: piece.id}, remote: true, class:"btn btn-dark" %>
+        <% else %>
+          <p>SOLD</p>
+        <% end %>
       </div>
     </div>
   </div>

@@ -17,10 +17,11 @@ class CheckoutController < ApplicationController
         currency: 'usd',
         quantity: 1
       }],
+      client_reference_id: piece.id,
       shipping_address_collection: {
         allowed_countries: ['US', 'CA'],
       },
-      success_url: checkout_success_url,
+      success_url: checkout_success_url + '?session_id={CHECKOUT_SESSION_ID}',
       cancel_url: checkout_cancel_url
       )
 
@@ -30,10 +31,14 @@ class CheckoutController < ApplicationController
 
   end 
 
-  def success
+  def success   
+    
   end
 
   def cancel
+    
   end
 
+
 end
+

@@ -64,7 +64,20 @@ Rails.application.configure do
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
 
-  #stripe integration
-  # config.stripe.secret_key = Rails.application.credentials.stripe[:development][:secret_key]
-  # config.stripe.publishable_key = Rails.application.credentials.stripe[:development][:publishable_key]
+  # this is so ngrok will work
+  config.hosts << "de8c2a0fe8cd.ngrok.io"
+
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.raise_delivery_errors = true
+  config.action_mailer.default_options = {from: 'vidamagicgallery@gmail.com'}
+  config.action_mailer.default :charset => "utf-8"
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.smtp_settings = {
+  address:              'smtp.gmail.com',
+  port:                 587,
+  domain:               'smtp.gmail.com',
+  user_name:            Rails.application.credentials.dig(:user_name),
+  password:             Rails.application.credentials.dig(:password),
+  authentication:       :login,
+  enable_starttls_auto: true  }
 end

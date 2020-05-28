@@ -1,5 +1,7 @@
-<h1>New Piece</h1>
+<% if current_user.try(:admin?) %>
+  <h1>New Piece</h1>
 
-<%= render 'form', piece: @piece %>
+  <%= render 'form', piece: @piece %>
 
-<%= link_to 'Back', pieces_path %>
+  <%= link_to 'Back', pieces_path %>
+<% end %>

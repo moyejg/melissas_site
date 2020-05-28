@@ -1,5 +1,6 @@
 class PiecesController < ApplicationController
   before_action :set_piece, only: [:show, :edit, :update, :destroy]
+  skip_before_action :verify_authenticity_token
 
   # GET /pieces
   # GET /pieces.json
@@ -25,9 +26,11 @@ class PiecesController < ApplicationController
   # POST /pieces.json
   def create
     @piece = Piece.new(piece_params)
+    @users = User.all
 
     respond_to do |format|
       if @piece.save
+        PieceMailer.with(piece: @piece).piece_notification_email.deliver_now
         format.html { redirect_to @piece, notice: 'Piece was successfully created.' }
         format.json { render :show, status: :created, location: @piece }
       else
@@ -35,7 +38,7 @@ class PiecesController < ApplicationController
         format.json { render json: @piece.errors, status: :unprocessable_entity }
       end
     end
-  end
+  end 
 
   # PATCH/PUT /pieces/1
   # PATCH/PUT /pieces/1.json
