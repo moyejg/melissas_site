@@ -61,9 +61,10 @@ p {
 
 
 @media only screen 
-  and (min-device-width: 375px) 
+  and (min-device-width: 374px) 
   and (max-device-width: 812px) 
   and (-webkit-min-device-pixel-ratio: 3) { 
+    
     .navbar {
       height: 150px;
     }

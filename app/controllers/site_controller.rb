@@ -10,6 +10,7 @@ class SiteController < ApplicationController
 
   def dashboard
     @piece = Piece.new
+    @pieces = Piece.all
     @users = User.all
   end
 

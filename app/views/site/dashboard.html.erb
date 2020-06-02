@@ -17,4 +17,13 @@
       </div>
     </div>
   </div>
+  <div class="row">
+    <div class="col-lg-6">
+    <div class="card">
+      <% @pieces.each do |piece| %>
+        <p><%= piece.name %>: <%= link_to 'Show', piece %> / <%= link_to 'Edit', edit_piece_path(piece) %> / <%= link_to 'Destroy', piece, method: :delete, data: { confirm: 'Are you sure?' } %></p>
+      <% end %>
+      </div>
+    </div>
+  </div>
 <% end %>
