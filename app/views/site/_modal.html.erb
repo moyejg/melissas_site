@@ -11,7 +11,7 @@
         <div id="carouselSlidesOnly<%=piece.id%>" class="carousel slide" data-interval="false">
           <div class="carousel-inner">
             <div class="carousel-item active">
-                <%= video_tag (url_for(piece.video) if piece.video.attached?), autoplay: :autoplay, loop: :loop, muted: :muted, controls: true, class: "modal-video" %>
+                <%= video_tag (url_for(piece.video) if piece.video.attached?), autoplay: :autoplay, loop: :loop, controls: true, class: "modal-video" %>
             </div>
             <% piece.images.joins(:blob).order('active_storage_blobs.filename ASC').each do |image| %>
               <div class="carousel-item">  
