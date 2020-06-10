@@ -123,4 +123,6 @@ Rails.application.configure do
   password:             Rails.application.credentials.dig(:password),
   authentication:       :login,
   enable_starttls_auto: true  }
+
+  
 end

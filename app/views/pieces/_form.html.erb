@@ -16,10 +16,19 @@
     <%= form.text_field :price, placeholder: 'Price', class: 'form-control' %>
   </div>
 
-  <div class="field">
-    <%= form.label :images %>
-   <%= form.file_field :images, multiple:true %>
-  </div>
+  <% if action_name == "dashboard" %>
+    <div class="field">
+      <%= form.label :images %>
+    <%= form.file_field :images, multiple:true %>
+    </div>
+  <% end %>
+
+  <% if action_name == "edit" %>
+    <div class="field">
+      <%= form.label :new_images %>
+      <%= form.file_field :new_images, multiple: true %>
+    </div>
+  <% end %>
 
   <div class="field">
     <%= form.label :video %>

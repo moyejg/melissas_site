@@ -1,5 +1,5 @@
 <div class="row">
-  <div class="col-lg-6 offset-lg-3">
+  <div class="col-lg-4 offset-lg-4">
     <div id="carouselExampleSlidesOnly" class="carousel slide" data-ride="carousel">
       <div class="carousel-inner">
         <div class="carousel-item active">
@@ -15,6 +15,7 @@
   </div>
 </div>
 
+
 <div class="row">
   <div class="col-lg-10 offset-lg-1 my-auto">
     <h1>Vida Gallery</h1>
@@ -25,13 +26,12 @@
   <div class="row">
     <% pieces.each do |piece| %>
       <div class="col-lg-4">
-        <a href="#" data-toggle="modal" data-target="#modal<%= piece.id %>">
-          <%= image_tag (piece.images.joins(:blob).order('active_storage_blobs.filename ASC').first if piece.images.attached?), class:"img-thumbnail mx-auto d-block img-size"%>
-        </a>
+      <%= link_to piece_modal_path(piece_id: piece.id), remote: true do %>        
+        <%= image_tag (piece.images.joins(:blob).order('active_storage_blobs.filename ASC').first if piece.images.attached?), class:"img-thumbnail mx-auto d-block img-size" %>  
+      <% end %>      
         <p><%= piece.name %></p>
         <p><%= piece.description %></p>
       </div>
-      <%= render 'site/modal', piece: piece %>
     <% end %>
   </div>
 <% end %>

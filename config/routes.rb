@@ -6,6 +6,7 @@ Rails.application.routes.draw do
 
   get 'gallery' => 'site#gallery'
   get 'dashboard' => 'site#dashboard'
+  get 'piece_modal' => 'pieces#piece_modal'
 
   scope '/checkout' do
     post 'create', to: 'checkout#create', as: 'checkout_create'

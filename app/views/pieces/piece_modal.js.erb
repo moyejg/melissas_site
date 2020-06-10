@@ -1,0 +1,10 @@
+$('body').prepend('<%= j render "piece_modal", piece: @piece %>');
+$('#piece-modal').modal('show'); 
+
+$('#piece-modal').on('hidden.bs.modal', function () {
+  $(this).remove();
+});
+
+$('#carouselSlidesOnly<%=@piece.id%>').on('slide.bs.carousel', function () {
+  document.getElementById('player').pause();
+})

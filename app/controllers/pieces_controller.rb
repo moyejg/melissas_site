@@ -45,6 +45,7 @@ class PiecesController < ApplicationController
   def update
     respond_to do |format|
       if @piece.update(piece_params)
+        @piece.images.attach(params[:piece][:new_images])
         format.html { redirect_to @piece, notice: 'Piece was successfully updated.' }
         format.json { render :show, status: :ok, location: @piece }
       else
@@ -62,6 +63,10 @@ class PiecesController < ApplicationController
       format.html { redirect_to pieces_url, notice: 'Piece was successfully destroyed.' }
       format.json { head :no_content }
     end
+  end
+
+  def piece_modal
+    @piece = Piece.find(params[:piece_id])
   end
 
   private
