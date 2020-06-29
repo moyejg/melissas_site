@@ -29,8 +29,9 @@
           </a>
         </div>   
       </div>
-      <div class="modal-footer">
+      <div class="modal-footer" style="justify-content: space-between;">        
         <% if @piece.quantity == 1 %>
+          <h5 class="">$<%= @piece.price %>0</h5>
           <%= button_to 'Purchase', checkout_create_path, method: :post, params: {id: @piece.id}, remote: true, class:"btn btn-dark" %>
         <% else %>
           <p>SOLD</p>

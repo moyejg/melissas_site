@@ -1,3 +1,9 @@
+<div class="row home-row">
+  <div class="col-lg">
+    <h1>VIDA MAGIC</h1>
+  </div>
+</div>
+
 <% if mobile? %>
   <div class="row">
     <div class="col-lg-4 offset-lg-4">
@@ -16,7 +22,6 @@
     </div>
   </div>
 <% else %>
-<br>
   <div id="carouselComputer" class="carousel slide" data-ride="carousel">
     <div class="carousel-inner">        
       <div class="carousel-item slow-carousel-item active"> 
@@ -42,26 +47,19 @@
     </div>
   </div>
 <% end %>
+<br>
+<br>
 
-
-<div class="row">
-  <div class="col-lg-10 offset-lg-1 my-auto">
-    <h1>Vida Gallery</h1>
+<div class="row home-row" style="background-color:black;">
+  <div class="col-sm">
+    <h5 style="color:white;">Welcome to VidaMagic Art. About the artist. Melissa was born and raised Southern California, however the Pacific Northwest won her heart and that is where she decided to plant her forever roots. The beauty of the northwest sparked a creative energy that she's embraced. Without formal training she began to paint. The pieces created are ones of passion. Each painting dictated the direction of their finality. This artist believes in using different textures as a way to emulate the world around us. The artist has used everything from acrylics to oil to gloss to even spackle to create these unique pieces. She believes in the core definition of art. Art is expressing the author's imaginative, conceptual ideas, or technical skill, intended to be appreciated for their beauty or emotional power. Emotional power is what experience you receive from Melissa’s art. Melissa currently resides in Vancouver Washington with her husband and pup.</h5>
   </div>
 </div>
 
-<% @pieces.each_slice(3) do |pieces| %>
-  <div class="row">
-    <% pieces.each do |piece| %>
-      <div class="col-lg-4">
-      <%= link_to piece_modal_path(piece_id: piece.id), remote: true do %>        
-        <%= image_tag (piece.images.joins(:blob).order('active_storage_blobs.filename ASC').first if piece.images.attached?), class:"img-thumbnail mx-auto d-block gallery-img-size", style:" box-shadow: 10px 10px 5px grey;" %>  
-      <% end %>      
-        <p class="gallery-p"><%= piece.name %></p>
-        <p class="gallery-p"><%= piece.description %></p>
-      </div>
-    <% end %>
+<div class="row home-row">
+  <div class="col-sm">
+    <a href="#" data-toggle="modal" data-target="#signUpModal"><h1>Become a Member</h1></a>
   </div>
-<% end %>
+</div>
 
 

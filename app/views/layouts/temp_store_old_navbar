@@ -1,0 +1,23 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-black">
+      <div class="nav-item dropdown float-left">
+        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+        <i class="fas fa-bars fa-2x" style="color: white;"></i></a>
+        <div class="dropdown-menu" aria-labelledby="navbarDropdown">  
+          <a class="dropdown-item" href="https://www.instagram.com/paint_knit_quilt_grow/?hl=en" target="_blank"><i class="fab fa-instagram"></i> Instagram</a>
+          <a class="dropdown-item" href="https://twitter.com/vidamagic1" target="_blank"><i class="fab fa-twitter-square"></i> Twitter</a>
+          <a class="dropdown-item" href="https://vidamagic.tumblr.com/" target="_blank"><i class="fab fa-tumblr-square"></i> Tumblr</a>
+          <a class="dropdown-item" href="https://vidamagic3.wixsite.com/website" target="_blank"><img src="/assets/melissalogo.jpg" class="mobile-icon dropdown-icon" height="15px" width="15px" alt=""></i> Blog</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="#" data-toggle="modal" data-target="#signUpModal">Become a Member</a>
+          <% if current_user.try(:admin?) %>
+            <div class="dropdown-divider"></div>
+              <a class="dropdown-item" href="/dashboard">Dashboard</a>
+          <% end %>
+        </div>  
+      </div>     
+      <a href="/" class="navbar-brand">
+        <img src="/assets/melissalogo.jpg" class="mobile-icon" height="50px" width="50px" alt="">
+      </a>
+    </nav>
+
+    <%= render 'layouts/sign_up_modal'%>

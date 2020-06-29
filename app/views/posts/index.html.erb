@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Blog</h1>
+<br>
+  <% @posts.each do |post| %>
+    <div class="row">
+      <div class="col-lg-6 offset-lg-3">
+        <div class="card">
+          <%= image_tag post.image, class:"card-img-top" %>
+          <div class="card-body" style="font-family: 'Poiret One', cursive;">
+            <h2 class="card-title post-title"><%= post.title %></h2>
+            <h6 class="card-subtitle mb-2 text-muted post-time-ago"><%= time_ago_in_words(post.created_at) %> ago</h6>
+            <p class="card-text post-body"><%= post.body %></p>
+          </div>
+        </div>    
+        <% if current_user.try(:admin?) %> 
+          <%= link_to 'Show', post %>
+          <%= link_to 'Edit', edit_post_path(post) %>
+          <%= link_to 'Destroy', post, method: :delete, data: { confirm: 'Are you sure?' } %>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<br>
+
+
+

@@ -5,15 +5,18 @@
   background-color: black;
 }
 
-.dropdown-toggle::after {
-  display: none;
-}
 
-.navbar-brand {
-  transform: translateX(-50%);
-  left: 50%;
-  position: absolute;
-}
+// I commented out these two styles after changing up site layout.  Keeping in case I go back to original layout.
+
+// .dropdown-toggle::after {
+//   display: none;
+// }
+
+// .navbar-brand {
+//   transform: translateX(-50%);
+//   left: 50%;
+//   position: absolute;
+// }
 
 h1 {
   font-family: 'Poiret One', cursive;
@@ -28,7 +31,7 @@ h5 {
   color: black;
 }
 
-p {
+.gallery-p {
   font-family: 'Poiret One', cursive;
   text-align: center;
   color: black;
@@ -36,11 +39,28 @@ p {
   word-wrap: break-word;  
 }
 
-.row {
-  padding: 10px; 
+.gallery-row {
+  margin: 10px;  
+}
+
+.home-row {
+  padding-top: 25px; 
+  padding-bottom: 25px;
+  padding-right: 25px;
+  margin-top: 5px;  
+}
+
+.row-border {
+  border-top: 1px solid black;
+  border-bottom: 1px solid black;
 }
 
 .img-size {
+  max-width: 100%;
+  height: auto;
+}
+
+.gallery-img-size {
   height: 225px;
   width: 225px;
 }
@@ -59,6 +79,21 @@ p {
   background-color: black !important;
 }
 
+.carousel-style {
+  height: 300px !important;
+  width: 100% !important;
+  background-color: white !important;
+}
+
+.col-lg-3 {
+  margin: 0px !important;
+  padding: 0px !important;
+}
+
+.slow-carousel-item {
+  transition-duration: 25s !important;
+}
+
 
 @media only screen 
   and (min-device-width: 374px) 
@@ -66,6 +101,10 @@ p {
     
     .navbar {
       height: 150px;
+    }
+
+    .navbar-mobile-font {
+      font-size: 40px;
     }
 
     .mobile-icon {
@@ -96,7 +135,7 @@ p {
       width: auto !important;
     }
 
-    p {
+    .gallery-p {
       font-size: 100px;
     }
 
@@ -114,6 +153,28 @@ p {
       height: 99% !important;
       min-height: 99% !important;
       max-height: 99% !important;
+    }
+
+    .carousel-style {
+      height: 900px !important;
+      width: 100% !important;
+      background-color: white !important;
+    }
+
+    .post-title {
+      font-size: 75px;
+    }
+
+    .post-time-ago {
+      font-size: 25px;
+    }
+
+    .post-body {
+      font-size: 50px;
+    }
+
+    h5 {
+      font-size: 40px;
     }
 
 
