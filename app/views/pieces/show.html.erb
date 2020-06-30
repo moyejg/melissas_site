@@ -22,6 +22,9 @@
   <div class="col-md-6">
     <% @piece.images.each do |image| %>
       <%= image_tag (image), style: "height: auto; width: 250px;" %>
+         <%= link_to 'Remove', delete_image_attachment_piece_url(image.signed_id),
+                method: :delete,
+                data: { confirm: 'Are you sure?' } %>
     <% end %>
   </div>
 

@@ -11,7 +11,7 @@
 
     
     <%= stylesheet_pack_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
-    <script src="https://js.stripe.com/v3/"></script>
+    <script src="https://js.stripe.com/v3"></script>
     <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
     
   </head>
@@ -35,6 +35,11 @@
           </li>
           <li class="nav-item">
             <a class="nav-link navbar-mobile-font" href="/blog">Blog</a>
+          </li>
+          <li class="nav-item">
+            <% if current_user.try(:admin?) %>
+              <a class="nav-link navbar-mobile-font" href="/dashboard">Dashboard</a>
+            <% end %>
           </li>
           <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle navbar-mobile-font" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

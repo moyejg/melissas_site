@@ -65,6 +65,12 @@ class PiecesController < ApplicationController
     end
   end
 
+  def delete_image_attachment
+    @image = ActiveStorage::Blob.find_signed(params[:id])
+    @image.attachments.first.purge
+    redirect_back(fallback_location: pieces_path)
+  end
+
   def piece_modal
     @piece = Piece.find(params[:piece_id])
   end

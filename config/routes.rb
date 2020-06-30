@@ -2,6 +2,12 @@ Rails.application.routes.draw do
   resources :posts
   devise_for :users
   resources :pieces
+  
+  resources :pieces do
+    member do
+      delete :delete_image_attachment
+    end
+  end
 
   root "site#home"
 
