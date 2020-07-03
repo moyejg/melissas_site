@@ -9,6 +9,10 @@
   </div>
 
   <div class="form-group">
+    <%= form.text_area :showcase_description, placeholder: 'Showcase Description', class: 'form-control' %>
+  </div>
+
+  <div class="form-group">
     <%= form.hidden_field :quantity, value: "1" %>
   </div>
 
@@ -22,6 +26,11 @@
     <%= form.file_field :images, multiple:true %>
     </div>
   <% end %>
+
+  <div class="field">
+    <%= form.label :showcase_image %>
+    <%= form.file_field :showcase_image %>
+  </div>
 
   <% if action_name == "edit" %>
     <div class="field">

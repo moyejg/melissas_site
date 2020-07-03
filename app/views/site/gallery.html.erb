@@ -49,16 +49,18 @@
     <h1>Vida Gallery</h1>
   </div>
 </div>
+<br>
 
 <% @pieces.each_slice(3) do |pieces| %>
   <div class="row">
     <% pieces.each do |piece| %>
       <div class="col-lg-4">
-      <%= link_to piece_modal_path(piece_id: piece.id), remote: true do %>        
-        <%= image_tag (piece.images.joins(:blob).order('active_storage_blobs.filename ASC').first if piece.images.attached?), class:"img-thumbnail mx-auto d-block gallery-img-size", style:" box-shadow: 10px 10px 5px grey;" %>  
-      <% end %>      
-        <p class="gallery-p"><%= piece.name %></p>
-        <p class="gallery-p"><%= piece.description %></p>
+        <br>
+        <%= link_to piece_modal_path(piece_id: piece.id), remote: true do %>        
+          <%= image_tag (piece.images.joins(:blob).order('active_storage_blobs.filename ASC').first if piece.images.attached?), class:"img-thumbnail mx-auto d-block gallery-img-size", style:" box-shadow: 10px 10px 5px grey;" %>  
+        <% end %>      
+          <p class="gallery-p"><%= piece.name %></p>
+          <p class="gallery-p"><%= piece.description %></p>              
       </div>
     <% end %>
   </div>

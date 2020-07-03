@@ -13,6 +13,10 @@ class PiecesController < ApplicationController
   def show
   end
 
+  def showcase
+    @piece = Piece.last
+  end
+
   # GET /pieces/new
   def new
     @piece = Piece.new
@@ -83,6 +87,6 @@ class PiecesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def piece_params
-      params.require(:piece).permit(:name, :description, :quantity, :price, :video, images: [])
+      params.require(:piece).permit(:name, :description, :showcase_description, :quantity, :price, :video, :showcase_image, images: [])
     end
 end
