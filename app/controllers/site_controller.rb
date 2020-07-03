@@ -12,8 +12,6 @@ class SiteController < ApplicationController
     @piece = Piece.new
     @pieces = Piece.all
     @users = User.all
-    @post = Post.new
-    @posts = Post.all
   end
 
 end

@@ -1,4 +1,5 @@
 <% if mobile? %>
+<br>
   <div class="row">
     <div class="col-lg-4 offset-lg-4">
       <div id="carouselMobile" class="carousel slide" data-ride="carousel">
@@ -43,10 +44,14 @@
   </div>
 <% end %>
 
-
 <div class="row">
-  <div class="col-lg-10 offset-lg-1 my-auto">
-    <h1>Vida Gallery</h1>
+  <div class="col-lg-8 offset-lg-2 my-auto">
+    <% if mobile? %>
+      <br>
+      <h1 style="border: 5px black solid;">Vida Gallery</h1>
+    <% else %>
+      <h1>Vida Gallery</h1>
+    <% end %>
   </div>
 </div>
 <br>
@@ -54,14 +59,16 @@
 <% @pieces.each_slice(3) do |pieces| %>
   <div class="row">
     <% pieces.each do |piece| %>
-      <div class="col-lg-4">
-        <br>
+      <div class="col-lg-4 gallery-img-css">
+        <p class="gallery-p" style="margin: 0px;"><%= piece.name %></p>
         <%= link_to piece_modal_path(piece_id: piece.id), remote: true do %>        
           <%= image_tag (piece.images.joins(:blob).order('active_storage_blobs.filename ASC').first if piece.images.attached?), class:"img-thumbnail mx-auto d-block gallery-img-size", style:" box-shadow: 10px 10px 5px grey;" %>  
         <% end %>      
-          <p class="gallery-p"><%= piece.name %></p>
-          <p class="gallery-p"><%= piece.description %></p>              
+        <p class="gallery-p"><%= piece.description %></p>          
       </div>
+    <% if mobile? %>
+      <img src="/assets/melissalogo.jpg" class="mobile-icon mx-auto d-block" height="50px" width="50px" alt="">
+    <% end %>
     <% end %>
   </div>
 <% end %>

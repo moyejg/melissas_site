@@ -4,13 +4,14 @@
     <div class="col-lg-6 offset-lg-3">
       <div class="card">
         <%= image_tag @piece.showcase_image, class:"card-img-top" %>
-        <div class="card-body" style="font-family: 'Poiret One', cursive;">
-          <h2 class="card-title post-title"><%= @piece.name %></h2>
-          <p class="card-text post-body"><%= @piece.showcase_description %></p>
-        </div>
+          <div class="card-body" style="font-family: 'Poiret One', cursive;">
+            <h2 class="card-title post-title"><%= @piece.name %></h2>
+            <p class="card-text post-body"><%= @piece.showcase_description %></p>
+          </div>        
       </div>    
+      <br>
+        <h5><%= link_to 'View Piece', @piece, style: "color:black;" %></h5>
       <% if current_user.try(:admin?) %> 
-        <%= link_to 'Show', @piece %>
         <%= link_to 'Edit', edit_piece_path(@piece) %>
         <%= link_to 'Destroy', @piece, method: :delete, data: { confirm: 'Are you sure?' } %>
       <% end %>

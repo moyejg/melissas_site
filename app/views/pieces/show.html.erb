@@ -1,32 +1,42 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <strong>Name:</strong>
-  <%= @piece.name %>
-</p>
-
-<p>
-  <strong>Description:</strong>
-  <%= @piece.description %>
-</p>
-
-<p>
-  <strong>Price:</strong>
-  $<%= @piece.price %>0
-</p>
 
 <div class="row">
-  <div class="col-md-6">
-    <%= video_tag (url_for(@piece.video) if @piece.video.attached?), autoplay: :autoplay, loop: :loop, muted: :muted, controls: true, class: "modal-video" %>
+  <div class="col-lg-8 offset-lg-2">
+    <h1><%= @piece.name %></h1>
+    <h5><%= @piece.description %></h5>
   </div>
-  <div class="col-md-6">
-    <% @piece.images.each do |image| %>
-      <%= image_tag (image), style: "height: auto; width: 250px;" %>
-         <%= link_to 'Remove', delete_image_attachment_piece_url(image.signed_id),
-                method: :delete,
-                data: { confirm: 'Are you sure?' } %>
-    <% end %>
+</div>
+
+
+<div class="row">
+  <div class="col-lg-8 offset-lg-2">
+    <%= video_tag (url_for(@piece.video) if @piece.video.attached?), autoplay: :autoplay, loop: :loop, muted: :muted, controls: true, class: "show-page-video" %>
+  </div>
+</div>
+<br>
+
+  <div class="row">
+    <div class="col-lg-4 offset-lg-4">
+      <% @piece.images.each do |image| %>
+        <%= image_tag (image), class: "img-fluid rounded mx-auto d-block img-border" %>
+        <% if current_user.try(:admin?) %>
+          <p><%= link_to 'Remove', delete_image_attachment_piece_url(image.signed_id),
+            method: :delete,
+           data: { confirm: 'Are you sure?' } %></p>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 
-<%= link_to 'Edit', edit_piece_path(@piece) %> |
-<%= link_to 'Back', dashboard_path %>
+<div class="row">
+  <div class="col-lg-4 offset-lg-4">
+    <h5 style="font-weight: bold;">$<%= @piece.price %>0</h5>
+    <% if @piece.quantity == 1 %>
+      <%= button_to 'Purchase', checkout_create_path, method: :post, params: {id: @piece.id}, remote: true, class:"btn btn-lg btn-dark mx-auto d-block" %>
+      <% else %>
+        <h5>SOLD</h5>
+      <% end %>
+  </div>
+</div>
+<br>
+
+
