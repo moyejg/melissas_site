@@ -4,4 +4,6 @@ class Piece < ApplicationRecord
   has_one_attached :video
 
   attr_accessor :new_images
+
+  paginates_per 9
 end

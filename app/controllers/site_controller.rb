@@ -5,7 +5,7 @@ class SiteController < ApplicationController
   end
   
   def gallery
-    @pieces = Piece.all 
+    @pieces = Piece.all.page(params[:page])
   end
   
   def dashboard
