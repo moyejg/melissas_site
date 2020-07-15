@@ -17,6 +17,7 @@
   <div class="row">
     <div class="col-lg-4 offset-lg-4">
       <% @piece.images.each do |image| %>
+      <br>
         <%= image_tag (image), class: "img-fluid rounded mx-auto d-block img-border" %>
         <% if current_user.try(:admin?) %>
           <p><%= link_to 'Remove', delete_image_attachment_piece_url(image.signed_id),
@@ -26,6 +27,7 @@
       <% end %>
     </div>
   </div>
+  <br>
 
 <div class="row">
   <div class="col-lg-4 offset-lg-4">

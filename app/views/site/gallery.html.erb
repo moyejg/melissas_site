@@ -48,7 +48,8 @@
   <div class="col-lg-8 offset-lg-2 my-auto">
     <% if mobile? %>
       <br>
-      <h1 style="border: 5px black solid;">Vida Gallery</h1>
+      <br>
+      <h1 style="font-weight: bold;">Vida Gallery</h1>
     <% else %>
       <h1>Vida Gallery</h1>
     <% end %>
@@ -63,8 +64,15 @@
         <p class="gallery-p" style="margin: 0px;"><%= piece.name %></p>
         <%= link_to piece_modal_path(piece_id: piece.id), remote: true do %>        
           <%= image_tag (piece.images.joins(:blob).order('active_storage_blobs.filename ASC').first if piece.images.attached?), class:"img-thumbnail mx-auto d-block gallery-img-size", style:" box-shadow: 10px 10px 5px grey;" %>  
-        <% end %>      
-        <p class="gallery-p"><%= piece.description %></p>          
+        <% end %>     
+        <p class="gallery-p"><%= piece.piece_type %></p>
+        <p class="gallery-p"><%= piece.size %></p>  
+        <% if piece.frame? %> 
+          <p class="gallery-p">Framed</p>
+        <% else %>
+          <p class="gallery-p">Unframed</p>
+        <% end %>
+        <p class="gallery-p"><%= piece.description %></p>       
       </div>
     <% if mobile? %>
       <img src="/assets/melissalogo.jpg" class="mobile-icon mx-auto d-block" height="50px" width="50px" alt="">
