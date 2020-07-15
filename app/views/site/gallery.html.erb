@@ -61,7 +61,7 @@
   <div class="row">
     <% pieces.each do |piece| %>
       <div class="col-lg-4 gallery-img-css">
-        <p class="gallery-p" style="margin: 0px;"><%= piece.name %></p>
+        <p class="gallery-p" style="margin: 0px; font-weight:bold;"><%= piece.name %></p>
         <%= link_to piece_modal_path(piece_id: piece.id), remote: true do %>        
           <%= image_tag (piece.images.joins(:blob).order('active_storage_blobs.filename ASC').first if piece.images.attached?), class:"img-thumbnail mx-auto d-block gallery-img-size", style:" box-shadow: 10px 10px 5px grey;" %>  
         <% end %>     
@@ -74,6 +74,7 @@
         <% end %>
         <p class="gallery-p"><%= piece.description %></p>       
       </div>
+      <br>
     <% if mobile? %>
       <img src="/assets/melissalogo.jpg" class="mobile-icon mx-auto d-block" height="50px" width="50px" alt="">
     <% end %>
