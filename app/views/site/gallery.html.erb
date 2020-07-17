@@ -25,7 +25,7 @@
           <% 4.times do %>
            <span style="display: none;"><%= @piece = Piece.find(Piece.pluck(:id).sample) %></span>
             <div class="col-sm-3">
-              <%= image_tag (@piece.images.joins(:blob).order('RANDOM()').first.variant(resize_to_limit: [200, 200]) if @piece.images.attached?), class:"img-thumbnail mx-auto d-block img-fluid", style:" box-shadow: 10px 10px 5px grey;" %>
+              <a href='pieces/<%= @piece.id %>'><%= image_tag (@piece.images.joins(:blob).order('RANDOM()').first.variant(resize_to_limit: [200, 200]) if @piece.images.attached?), class:"img-thumbnail mx-auto d-block img-fluid", style:" box-shadow: 10px 10px 5px grey;" %></a>
             </div>
           <% end %>
         </div>         
@@ -35,7 +35,7 @@
           <% 4.times do %>
             <span style="display: none;"><%= @piece = Piece.find(Piece.pluck(:id).sample) %></span>
             <div class="col-sm-3">
-              <%= image_tag (@piece.images.joins(:blob).order('RANDOM()').first.variant(resize_to_limit: [200, 200]) if @piece.images.attached?), class:"img-thumbnail mx-auto d-block img-fluid", style:" box-shadow: 10px 10px 5px grey;" %>
+              <a href='pieces/<%= @piece.id %>'><%= image_tag (@piece.images.joins(:blob).order('RANDOM()').first.variant(resize_to_limit: [200, 200]) if @piece.images.attached?), class:"img-thumbnail mx-auto d-block img-fluid", style:" box-shadow: 10px 10px 5px grey;" %></a>
             </div>
           <% end %>
         </div>              
@@ -57,22 +57,45 @@
 </div>
 <br>
 
+<div class="row">
+  <div class="col-lg-4 offset-lg-4 text-center">
+    <div class="dropdown">
+      <button class="btn sort-btn btn-dark dropdown-toggle" type="button" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" style="font-family: 'Poiret One', cursive; font-weight: bold;">
+        Sort By:
+      </button>
+      <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+        <p class="link-p"><%= sort_link(@q, :name, 'Name') %></p>
+        <p class="link-p"><%= sort_link(@q, :price, 'Price') %></p>
+        <p class="link-p"><%= sort_link(@q, :created_at, 'Date Added') %></p>
+      </div>
+    </div>
+  </div>
+</div>
+
+
 <% @pieces.each_slice(3) do |pieces| %>
-  <div class="row">
+  <div class="row" style="margin-bottom:20px;">
     <% pieces.each do |piece| %>
       <div class="col-lg-4 gallery-img-css">
-        <p class="gallery-p" style="margin: 0px; font-weight:bold;"><%= piece.name %></p>
         <%= link_to piece_modal_path(piece_id: piece.id), remote: true do %>        
-          <%= image_tag (piece.images.joins(:blob).order('active_storage_blobs.filename ASC').first if piece.images.attached?), class:"img-thumbnail mx-auto d-block gallery-img-size", style:" box-shadow: 10px 10px 5px grey;" %>  
-        <% end %>     
-        <p class="gallery-p"><%= piece.piece_type %></p>
-        <p class="gallery-p"><%= piece.size %></p>  
-        <% if piece.frame? %> 
-          <p class="gallery-p">Framed</p>
-        <% else %>
-          <p class="gallery-p">Unframed</p>
-        <% end %>
-        <p class="gallery-p"><%= piece.description %></p>       
+          <%= image_tag (piece.images.joins(:blob).order('active_storage_blobs.filename ASC').first if piece.images.attached?), class:"img-thumbnail mx-auto d-block gallery-img-size", style:"box-shadow: 10px 10px 5px grey; margin-top: 20px" %>  
+        <% end %>  
+        <div class="placard mx-auto d-block">   
+          <p class="gallery-p" style="font-weight:bold;"><%= piece.name %></p>
+          <p class="gallery-p"><%= piece.piece_type %></p>
+          <p class="gallery-p"><%= piece.size %></p>  
+          <% if piece.frame? %> 
+            <p class="gallery-p-sm">Framed</p>
+          <% else %>
+            <p class="gallery-p-sm">Unframed</p>
+          <% end %>
+          <p class="gallery-p-sm des-space"><%= piece.description %></p> 
+          <% if piece.quantity == 1 %> 
+            <p class="gallery-p-sm" style="font-weight:bold;">$<%= piece.price %>0</p>   
+          <% else %>
+            <p class="gallery-p-sm" style="font-weight:bold;">Sold</p>  
+          <% end %>
+        </div>
       </div>
       <br>
     <% if mobile? %>
@@ -82,8 +105,10 @@
   </div>
 <% end %>
 
+<br>
 <div class="container pagination justify-content-center">
   <%= paginate @pieces %>
 </div>
+<br>
 
 

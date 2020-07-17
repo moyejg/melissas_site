@@ -29,7 +29,7 @@
           <% 4.times do %>
            <span style="display: none;"><%= @piece = Piece.find(Piece.pluck(:id).sample) %></span>
             <div class="col-sm-3">
-              <%= image_tag (@piece.images.joins(:blob).order('RANDOM()').first.variant(resize_to_limit: [200, 200]) if @piece.images.attached?), class:"img-thumbnail mx-auto d-block img-fluid", style:" box-shadow: 10px 10px 5px grey;" %>
+              <a href='pieces/<%= @piece.id %>'><%= image_tag (@piece.images.joins(:blob).order('RANDOM()').first.variant(resize_to_limit: [200, 200]) if @piece.images.attached?), class:"img-thumbnail mx-auto d-block img-fluid", style:" box-shadow: 10px 10px 5px grey;" %></a>
             </div>
           <% end %>
         </div>         
@@ -39,7 +39,7 @@
           <% 4.times do %>
             <span style="display: none;"><%= @piece = Piece.find(Piece.pluck(:id).sample) %></span>
             <div class="col-sm-3">
-              <%= image_tag (@piece.images.joins(:blob).order('RANDOM()').first.variant(resize_to_limit: [200, 200]) if @piece.images.attached?), class:"img-thumbnail mx-auto d-block img-fluid", style:" box-shadow: 10px 10px 5px grey;" %>
+              <a href='pieces/<%= @piece.id %>'><%= image_tag (@piece.images.joins(:blob).order('RANDOM()').first.variant(resize_to_limit: [200, 200]) if @piece.images.attached?), class:"img-thumbnail mx-auto d-block img-fluid", style:" box-shadow: 10px 10px 5px grey;" %></a>
             </div>
           <% end %>
         </div>              

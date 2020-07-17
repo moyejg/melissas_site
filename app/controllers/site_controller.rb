@@ -5,7 +5,8 @@ class SiteController < ApplicationController
   end
   
   def gallery
-    @pieces = Piece.all.page(params[:page])
+    @q = Piece.ransack(params[:q])
+    @pieces = @q.result.page(params[:page])
   end
   
   def dashboard
