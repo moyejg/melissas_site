@@ -14,7 +14,7 @@ class PiecesController < ApplicationController
   end
 
   def showcase
-    @piece = Piece.last
+    @piece = Piece.find_by(showcase: true)
   end
 
   # GET /pieces/new
@@ -49,7 +49,6 @@ class PiecesController < ApplicationController
   def update
     respond_to do |format|
       if @piece.update(piece_params)
-        @piece.images.attach(params[:piece][:new_images])
         format.html { redirect_to @piece, notice: 'Piece was successfully updated.' }
         format.json { render :show, status: :ok, location: @piece }
       else
@@ -87,6 +86,6 @@ class PiecesController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def piece_params
-      params.require(:piece).permit(:name, :description, :showcase_description, :quantity, :price, :piece_type, :size, :frame, :video, :showcase_image, images: [])
+      params.require(:piece).permit(:name, :description, :showcase_description, :quantity, :price, :piece_type, :size, :frame, :video, :showcase, :showcase_image, images: [])
     end
 end
