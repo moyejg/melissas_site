@@ -7,7 +7,7 @@ class Piece < ApplicationRecord
 
   attr_accessor :new_images
 
-  paginates_per 9
+  paginates_per 12
 
   def falsify_all_other_piece_showcase
     self.class.where('id != ? and showcase', self.id).update_all("showcase = 'false'")
